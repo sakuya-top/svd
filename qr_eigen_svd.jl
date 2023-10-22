@@ -32,7 +32,6 @@ function H1(A)
     return C1',C1*A
 end
 
-
 function eigen1(M)
     m=size(M,1)
     q0=zeros(MatrixType,m,m)
@@ -79,14 +78,16 @@ function svd1(A,r)
     return (U,sigma,Vt)
 end
 
-l=512
-A=rand(MatrixType,l,l)
-(U,sigma,Vt)=svd1(A,l);
+l=512;s=300;
+A=rand(MatrixType,l,s);
+(U,sigma,Vt)=svd1(A,s);
 
 println(l)
 
-@timev (U,sigma,Vt)=svd1(A,l);
+@timev (U,sigma,Vt)=svd1(A,s);
 
 println(sum(abs.(U*sigma*Vt-A)))
+
+U*sigma*Vt-A
 
 
